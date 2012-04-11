@@ -170,6 +170,7 @@ namespace MdNote
         {
             int s2w = splitContainer2.Size.Width;
             int s1w = splitContainer1.Size.Width;
+            if (s2w == 0 || s1w == 0) { return; }
 
             splitContainer2.SplitterDistance = s2w / 5;
             splitContainer1.SplitterDistance = s1w / 2;
