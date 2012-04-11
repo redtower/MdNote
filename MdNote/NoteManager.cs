@@ -33,7 +33,6 @@ namespace MdNote
 
         public void write(NoteManager obj)
         {
-            //ArrayListに追加されているオブジェクトを指定してXMLファイルに保存する
             XmlSerializer serializer = new XmlSerializer(typeof(NoteManager));
             FileStream fs = new FileStream(_FilePath, FileMode.Create);
             serializer.Serialize(fs, obj);
