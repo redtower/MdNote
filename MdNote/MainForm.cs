@@ -48,6 +48,8 @@ namespace MdNote
 
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
             webBrowser1.DocumentText = md.Transform(azukiControl1.Text);
+
+            SaveCurrentNote(_CurrentNote);
         }
 
         private string GetTitle(string text)
