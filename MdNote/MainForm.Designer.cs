@@ -71,7 +71,7 @@
             this.azukiControl1.ForeColor = System.Drawing.Color.Black;
             this.azukiControl1.Location = new System.Drawing.Point(0, 0);
             this.azukiControl1.Name = "azukiControl1";
-            this.azukiControl1.Size = new System.Drawing.Size(272, 535);
+            this.azukiControl1.Size = new System.Drawing.Size(285, 535);
             this.azukiControl1.TabIndex = 0;
             this.azukiControl1.ViewWidth = 4129;
             this.azukiControl1.TextChanged += new System.EventHandler(this.azukiControl1_TextChanged);
@@ -84,7 +84,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(266, 535);
+            this.webBrowser1.Size = new System.Drawing.Size(289, 535);
             this.webBrowser1.TabIndex = 1;
             // 
             // splitContainer1
@@ -103,8 +103,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(548, 536);
-            this.splitContainer1.SplitterDistance = 279;
+            this.splitContainer1.Size = new System.Drawing.Size(584, 536);
+            this.splitContainer1.SplitterDistance = 292;
             this.splitContainer1.TabIndex = 2;
             // 
             // listBox1
@@ -118,7 +118,7 @@
             this.listBox1.ItemHeight = 19;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(230, 539);
+            this.listBox1.Size = new System.Drawing.Size(194, 539);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -139,7 +139,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainer2.Size = new System.Drawing.Size(792, 540);
-            this.splitContainer2.SplitterDistance = 236;
+            this.splitContainer2.SplitterDistance = 200;
             this.splitContainer2.TabIndex = 4;
             // 
             // toolStrip1
@@ -192,6 +192,7 @@
             this.Name = "MainForm";
             this.Text = "MdNote";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);

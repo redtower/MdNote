@@ -22,19 +22,24 @@ namespace MdNote
         private void MainForm_Load(object sender, EventArgs e)
         {
             _NoteManager.Items = new NoteManagerFile().read();
-            foreach (Note item in _NoteManager.Items)
-            {
-                listBox1.Items.Add(item.Title);
-            }
+            ReflashNoteManagerListBox();
+            SetSplitterSize();
         }
 
         private void azukiControl1_TextChanged(object sender, EventArgs e)
         {
             if (_CurrentNote == null) { return; }
+            _CurrentNote.Body = azukiControl1.Text;
+
             string before = _CurrentNote.Title;
             string after = GetTitle(azukiControl1.Text);
 
-            if (after != null && !before.Equals(after))
+            if (after == null)
+            {
+                ResetNoteManager();
+                ReflashNoteManagerListBox();
+            }
+            else if (!before.Equals(after))
             {// テキスト変更後にタイトルが変わっていた場合
                 _CurrentNote.Title = GetTitle(azukiControl1.Text);
                 ResetNoteManager();
@@ -43,7 +48,6 @@ namespace MdNote
 
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
             webBrowser1.DocumentText = md.Transform(azukiControl1.Text);
-            _CurrentNote.Body = azukiControl1.Text;
         }
 
         private string GetTitle(string text)
@@ -117,6 +121,7 @@ namespace MdNote
             {
                 listBox1.Items.Add(item.Title);
             }
+            if (_CurrentNote == null) { return; }
             for (int i = 0; i < _NoteManager.Items.Count; i++)
             {
                 if (((Note)_NoteManager.Items[i]).Id == _CurrentNote.Id)
@@ -138,9 +143,6 @@ namespace MdNote
 
             azukiControl1.Enabled = true;
             azukiControl1.Text = "";
-
-            //_NoteManager.Items.Add(_CurrentNote);
-            //ReflashNoteManagerListBox();
         }
 
         private void SaveCurrentNote(Note note)
@@ -157,6 +159,20 @@ namespace MdNote
 
             NoteFile nf = new NoteFile(note);
             note.Body = nf.read();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            SetSplitterSize();
+        }
+
+        private void SetSplitterSize()
+        {
+            int s2w = splitContainer2.Size.Width;
+            int s1w = splitContainer1.Size.Width;
+
+            splitContainer2.SplitterDistance = s2w / 5;
+            splitContainer1.SplitterDistance = s1w / 2;
         }
     }
 }
