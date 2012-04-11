@@ -9,9 +9,7 @@ namespace MdNote
 {
     public class NoteManager
     {
-        //ArrayList‚É’Ç‰Á‚³‚ê‚éŒ^‚ðŽw’è‚·‚é
-        [XmlArrayItem(typeof(Note))]
-        public ArrayList Items = new ArrayList();
+        public List<Note> Items = new List<Note>();
     }
 
     public class NoteManagerFile
@@ -42,7 +40,7 @@ namespace MdNote
             fs.Close();
         }
 
-        public ArrayList read()
+        public List<Note> read()
         {
             NoteManager nm = new NoteManager();
             try
