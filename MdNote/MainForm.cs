@@ -75,12 +75,7 @@ namespace MdNote
         {
             if (listBox1.SelectedIndex == -1) { return; }
             string id = null;
-            if (_CurrentNote != null)
-            {
-                id = _CurrentNote.Id;
-                SaveCurrentNote(_CurrentNote);
-                new NoteManagerFile().write(_NoteManager);
-            }
+            if (_CurrentNote != null) { id = _CurrentNote.Id; }
             _CurrentNote = (Note)_NoteManager.Items[listBox1.SelectedIndex];
             if (_CurrentNote.Id.Equals(id)) { return; }
 
