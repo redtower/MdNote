@@ -40,7 +40,8 @@ namespace MdNote
 
     public class NoteFile
     {
-        const string DIRNAME = ".notes";
+        const string DIRNAME = @".notes\";
+        const string TRASHDIRNAME = @"trash\";
         Note _Note;
 
         public NoteFile() { }
@@ -52,7 +53,7 @@ namespace MdNote
         private string GetTrashDirectoryPath(Note obj)
         {
             string p = AppDomain.CurrentDomain.BaseDirectory
-                + @"\" + DIRNAME + @"\" + "trash";
+                + DIRNAME + TRASHDIRNAME;
 
             if (!Directory.Exists(p))
             {
@@ -65,8 +66,7 @@ namespace MdNote
         private string GetNoteFilePath(Note obj)
         {
             string p = AppDomain.CurrentDomain.BaseDirectory
-                + @"\" + DIRNAME
-                + @"\" + obj.FileName;
+                + DIRNAME + obj.FileName;
 
             if (!Directory.Exists(Path.GetDirectoryName(p)))
             {
@@ -120,7 +120,7 @@ namespace MdNote
             string f = GetNoteFilePath(obj);
             if (!File.Exists(f)) { return; }
 
-            string p = GetTrashDirectoryPath(obj) + @"\" + Path.GetFileName(f);
+            string p = GetTrashDirectoryPath(obj) + Path.GetFileName(f);
             if (!File.Exists(p)) { new FileInfo(p).Delete(); }
 
             new FileInfo(f).MoveTo(p);

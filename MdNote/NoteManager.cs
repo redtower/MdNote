@@ -14,27 +14,23 @@ namespace MdNote
 
     public class NoteManagerFile
     {
-        const string DIRNAME = ".notes";
+        const string DIRNAME = @".notes\";
         const string FILENAME = "noteslist.xml";
-        string _FilePath;
 
-        public NoteManagerFile()
+        public NoteManagerFile() { }
+
+        private string GetNoteManagerFilePath()
         {
-            _FilePath = System.AppDomain.CurrentDomain.BaseDirectory;
-            _FilePath += @"\" + DIRNAME;
+            string p = System.AppDomain.CurrentDomain.BaseDirectory
+                + DIRNAME + FILENAME;
 
-            if (!Directory.Exists(_FilePath))
-            {
-                Directory.CreateDirectory(_FilePath);
-            }
-
-            _FilePath += @"\" + FILENAME;
+            return p;
         }
 
         public void write(NoteManager obj)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(NoteManager));
-            FileStream fs = new FileStream(_FilePath, FileMode.Create);
+            FileStream fs = new FileStream(GetNoteManagerFilePath(), FileMode.Create);
             serializer.Serialize(fs, obj);
             fs.Close();
         }
@@ -45,7 +41,7 @@ namespace MdNote
             try
             {
                 XmlSerializer xmls = new XmlSerializer(typeof(NoteManager));
-                FileStream fs = new FileStream(_FilePath, FileMode.Open);
+                FileStream fs = new FileStream(GetNoteManagerFilePath(), FileMode.Open);
                 nm = (NoteManager)xmls.Deserialize(fs);
                 fs.Close();
             }
