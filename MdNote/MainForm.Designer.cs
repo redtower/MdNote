@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Sgry.Azuki.FontInfo fontInfo2 = new Sgry.Azuki.FontInfo();
+            Sgry.Azuki.FontInfo fontInfo5 = new Sgry.Azuki.FontInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.azukiControl1 = new Sgry.Azuki.WinForms.AzukiControl();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -64,10 +64,10 @@
             this.azukiControl1.Enabled = false;
             this.azukiControl1.FirstVisibleLine = 0;
             this.azukiControl1.Font = new System.Drawing.Font("MS UI Gothic", 9F);
-            fontInfo2.Name = "MS UI Gothic";
-            fontInfo2.Size = 9;
-            fontInfo2.Style = System.Drawing.FontStyle.Regular;
-            this.azukiControl1.FontInfo = fontInfo2;
+            fontInfo5.Name = "MS UI Gothic";
+            fontInfo5.Size = 9;
+            fontInfo5.Style = System.Drawing.FontStyle.Regular;
+            this.azukiControl1.FontInfo = fontInfo5;
             this.azukiControl1.ForeColor = System.Drawing.Color.Black;
             this.azukiControl1.Location = new System.Drawing.Point(0, 0);
             this.azukiControl1.Name = "azukiControl1";
@@ -112,6 +112,7 @@
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.listBox1.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.IntegralHeight = false;
@@ -120,6 +121,9 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(194, 539);
             this.listBox1.TabIndex = 3;
+            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
+            this.listBox1.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.listBox1_MeasureItem);
+            this.listBox1.Resize += new System.EventHandler(this.listBox1_Resize);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // splitContainer2

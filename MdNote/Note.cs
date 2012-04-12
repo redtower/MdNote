@@ -10,7 +10,7 @@ namespace MdNote
         private string _Id;
         private string _Title;
         private string _FileName;
-        private string _Body;
+        private string _Body = "";
 
         public string Id
         {
@@ -35,18 +35,6 @@ namespace MdNote
         {
             get { return _Body; }
             set { _Body = value; }
-        }
-
-        public Note()
-        {
-        }
-
-        public Note(string id, string title, string filename, string body)
-        {
-            _Id = id;
-            _Title = title;
-            _FileName = filename;
-            _Body = body;
         }
     }
 
@@ -75,7 +63,7 @@ namespace MdNote
         {
             StreamWriter sr = new StreamWriter(
                 _FilePath,
-                false,                
+                false,
                 System.Text.Encoding.GetEncoding("utf-8"));
             sr.Write(_Note.Body);
             sr.Close();

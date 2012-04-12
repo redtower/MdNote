@@ -29,6 +29,7 @@ namespace MdNote
         private void azukiControl1_TextChanged(object sender, EventArgs e)
         {
             if (_CurrentNote == null) { return; }
+            if ( !azukiControl1.Enabled ) { azukiControl1.Enabled = true; }
             _CurrentNote.Body = azukiControl1.Text;
 
             string before = _CurrentNote.Title;
@@ -47,7 +48,9 @@ namespace MdNote
             }
 
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
-            webBrowser1.DocumentText = md.Transform(azukiControl1.Text);
+            string html = "";
+            html += md.Transform(azukiControl1.Text);
+            webBrowser1.DocumentText = html;
 
             SaveCurrentNote(_CurrentNote);
         }
@@ -131,20 +134,18 @@ namespace MdNote
                     listBox1.SelectedIndex = i;
                 }
             }
+            listBox1.ItemHeight = 38;
         }
 
         private void NewToolStripButton_Click(object sender, EventArgs e)
         {
-            SaveCurrentNote(_CurrentNote);
-
             string id = DateTime.Now.ToString("yyyyMMdd-HHmmss");
             _CurrentNote = new Note();
             _CurrentNote.Id = id;
             _CurrentNote.Title = "new note";
             _CurrentNote.FileName = id + ".md";
 
-            azukiControl1.Enabled = true;
-            azukiControl1.Text = "";
+            azukiControl1.Text = _CurrentNote.Body;
         }
 
         private void SaveCurrentNote(Note note)
@@ -176,6 +177,34 @@ namespace MdNote
 
             splitContainer2.SplitterDistance = s2w / 5;
             splitContainer1.SplitterDistance = s1w / 2;
+        }
+
+        private void listBox1_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            e.Graphics.PageUnit = GraphicsUnit.Pixel;
+            SizeF size = e.Graphics.MeasureString(
+                listBox1.Items[e.Index].ToString(),
+                listBox1.Font,
+                listBox1.ClientSize.Width);
+            e.ItemWidth = Convert.ToInt32(size.Width);
+            e.ItemHeight = Convert.ToInt32(size.Height);
+        }
+
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            if (e.Index == -1) { return; }
+            e.Graphics.FillRectangle(new SolidBrush(e.BackColor), e.Bounds);
+            e.Graphics.DrawString(
+                listBox1.Items[e.Index].ToString(),
+                listBox1.Font,
+                new SolidBrush(e.ForeColor),
+                e.Bounds);
+        }
+
+        private void listBox1_Resize(object sender, EventArgs e)
+        {
+            ReflashNoteManagerListBox();
         }
     }
 }
