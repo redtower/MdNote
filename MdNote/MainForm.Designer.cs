@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Sgry.Azuki.FontInfo fontInfo5 = new Sgry.Azuki.FontInfo();
+            Sgry.Azuki.FontInfo fontInfo1 = new Sgry.Azuki.FontInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.azukiControl1 = new Sgry.Azuki.WinForms.AzukiControl();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -42,6 +42,7 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.SaveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -67,10 +68,10 @@
             this.azukiControl1.Enabled = false;
             this.azukiControl1.FirstVisibleLine = 0;
             this.azukiControl1.Font = new System.Drawing.Font("MS UI Gothic", 9F);
-            fontInfo5.Name = "MS UI Gothic";
-            fontInfo5.Size = 9;
-            fontInfo5.Style = System.Drawing.FontStyle.Regular;
-            this.azukiControl1.FontInfo = fontInfo5;
+            fontInfo1.Name = "MS UI Gothic";
+            fontInfo1.Size = 9;
+            fontInfo1.Style = System.Drawing.FontStyle.Regular;
+            this.azukiControl1.FontInfo = fontInfo1;
             this.azukiControl1.ForeColor = System.Drawing.Color.Black;
             this.azukiControl1.Location = new System.Drawing.Point(0, 0);
             this.azukiControl1.Name = "azukiControl1";
@@ -157,6 +158,7 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
+            this.toolStripButton5,
             this.SaveToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -167,7 +169,7 @@
             // NewToolStripButton
             // 
             this.NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NewToolStripButton.Image = global::MdNote.Properties.Resources._112_Plus_Green_16x16_72;
+            this.NewToolStripButton.Image = global::MdNote.Properties.Resources.Plus_Green_16x16_72;
             this.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewToolStripButton.Name = "NewToolStripButton";
             this.NewToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -177,7 +179,7 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::MdNote.Properties.Resources._112_Minus_Orange_16x16_72;
+            this.toolStripButton2.Image = global::MdNote.Properties.Resources.Minus_Orange_16x16_72;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
@@ -186,7 +188,7 @@
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::MdNote.Properties.Resources._112_UpArrowShort_Blue_16x16_72;
+            this.toolStripButton3.Image = global::MdNote.Properties.Resources.UpArrowShort_Blue_16x16_72;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
@@ -195,7 +197,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::MdNote.Properties.Resources._112_DownArrowShort_Blue_16x16_72;
+            this.toolStripButton4.Image = global::MdNote.Properties.Resources.DownArrowShort_Blue_16x16_72;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
@@ -220,6 +222,15 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = global::MdNote.Properties.Resources.gear_32;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "toolStripButton5";
             // 
             // MainForm
             // 
@@ -259,6 +270,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }
 

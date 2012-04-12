@@ -75,10 +75,10 @@
   <ItemGroup>
     <Content Include="lib\Azuki.dll" />
     <Content Include="lib\MarkdownSharp.dll" />
+    <None Include="Resources\gear_32.png" />
     <None Include="Resources\112_UpArrowShort_Blue_16x16_72.png" />
     <None Include="Resources\112_Minus_Orange_16x16_72.png" />
     <None Include="Resources\112_DownArrowShort_Blue_16x16_72.png" />
-    <None Include="Resources\Settings.png" />
     <None Include="Resources\112_Plus_Green_16x16_72.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
