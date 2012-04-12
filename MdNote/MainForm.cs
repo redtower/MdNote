@@ -218,6 +218,7 @@ namespace MdNote
 
         private void DeleteToolStripButton2_Click(object sender, EventArgs e)
         {
+            if (_CurrentNote == null) { return; }
             foreach (Note item in _NoteManager.Items)
             {
                 if (item.Id.Equals(_CurrentNote.Id))
@@ -238,12 +239,61 @@ namespace MdNote
 
         private void UpToolStripButton3_Click(object sender, EventArgs e)
         {
+            if (_CurrentNote == null) { return; }
+            NoteManager nnm = new NoteManager();
+            Note buffer = null;
 
+            foreach (Note item in _NoteManager.Items)
+            {
+                if (item.Id.Equals(_CurrentNote.Id))
+                {
+                    nnm.Items.Add(item);
+                }
+                else
+                {
+                    if (buffer != null) { nnm.Items.Add(buffer); }
+                    buffer = item;
+                }
+            }
+
+            nnm.Items.Add(buffer);
+
+            _NoteManager = nnm;
+            new NoteManagerFile().write(_NoteManager);
+            ReflashNoteManagerListBox();
         }
 
         private void DownToolStripButton4_Click(object sender, EventArgs e)
         {
+            if (_CurrentNote == null) { return; }
+            NoteManager nnm = new NoteManager();
+            Note buffer = null;
 
+            foreach (Note item in _NoteManager.Items)
+            {
+                if (item.Id.Equals(_CurrentNote.Id))
+                {
+                    buffer = item;
+                }
+                else
+                {
+                    nnm.Items.Add(item);
+                    if (buffer != null)
+                    {
+                        nnm.Items.Add(buffer);
+                        buffer = null;
+                    }
+                }
+            }
+
+            if (buffer != null)
+            {
+                nnm.Items.Add(buffer);
+            }
+
+            _NoteManager = nnm;
+            new NoteManagerFile().write(_NoteManager);
+            ReflashNoteManagerListBox();
         }
 
         private void SettingToolStripButton5_Click(object sender, EventArgs e)
