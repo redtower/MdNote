@@ -21,9 +21,17 @@ namespace MdNote
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            this.Text = this.Text + "  ver" + GetVersion();
+
             _NoteManager.Items = new NoteManagerFile().read();
             ReflashNoteManagerListBox();
             SetSplitterSize();
+        }
+
+        private string GetVersion()
+        {
+            string v = Application.ProductVersion;
+            return v.Substring(0, v.Length - ".0.0".Length);
         }
 
         private void azukiControl1_TextChanged(object sender, EventArgs e)
