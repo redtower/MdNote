@@ -145,7 +145,6 @@ namespace MdNote
                     listBox1.SelectedIndex = i;
                 }
             }
-            listBox1.ItemHeight = 38;
         }
 
         private void SaveCurrentNote(Note note)
