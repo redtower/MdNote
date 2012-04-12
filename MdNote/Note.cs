@@ -40,46 +40,90 @@ namespace MdNote
 
     public class NoteFile
     {
-        Note _Note;
         const string DIRNAME = ".notes";
-        string _FilePath;
+        Note _Note;
 
-        public NoteFile(Note obj)
+        public NoteFile() { }
+        public NoteFile(Note obj) 
         {
             _Note = obj;
+        }
 
-            _FilePath = System.AppDomain.CurrentDomain.BaseDirectory;
-            _FilePath += @"\" + DIRNAME;
+        private string GetTrashDirectoryPath(Note obj)
+        {
+            string p = AppDomain.CurrentDomain.BaseDirectory
+                + @"\" + DIRNAME + @"\" + "trash";
 
-            if (!Directory.Exists(_FilePath))
+            if (!Directory.Exists(p))
             {
-                Directory.CreateDirectory(_FilePath);
+                Directory.CreateDirectory(p);
             }
 
-            _FilePath += @"\" + obj.FileName;
+            return p;
+        }
+
+        private string GetNoteFilePath(Note obj)
+        {
+            string p = AppDomain.CurrentDomain.BaseDirectory
+                + @"\" + DIRNAME
+                + @"\" + obj.FileName;
+
+            if (!Directory.Exists(Path.GetDirectoryName(p)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(p));
+            }
+
+            return p;
         }
 
         public void write()
         {
+            write(_Note);
+        }
+
+        public void write(Note obj)
+        {
             StreamWriter sr = new StreamWriter(
-                _FilePath,
+                GetNoteFilePath(obj),
                 false,
                 System.Text.Encoding.GetEncoding("utf-8"));
-            sr.Write(_Note.Body);
+            sr.Write(obj.Body);
             sr.Close();
         }
 
         public string read()
         {
-            if (!File.Exists(_FilePath)) { return null; }
+            return read(_Note);
+        }
+
+        public string read(Note obj)
+        {
+            if (!File.Exists(GetNoteFilePath(obj))) { return null; }
 
             StreamReader sr = new StreamReader(
-                _FilePath,
+                GetNoteFilePath(obj),
                 System.Text.Encoding.GetEncoding("utf-8"));
             string body = sr.ReadToEnd();
+            obj.Body = body;
             sr.Close();
 
             return body;
+        }
+
+        public void trash()
+        {
+            trash(_Note);
+        }
+
+        public void trash(Note obj)
+        {
+            string f = GetNoteFilePath(obj);
+            if (!File.Exists(f)) { return; }
+
+            string p = GetTrashDirectoryPath(obj) + @"\" + Path.GetFileName(f);
+            if (!File.Exists(p)) { new FileInfo(p).Delete(); }
+
+            new FileInfo(f).MoveTo(p);
         }
     }
 }

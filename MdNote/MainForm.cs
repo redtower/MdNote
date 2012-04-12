@@ -59,6 +59,8 @@ namespace MdNote
                 _CurrentNote.Title = GetTitle(azukiControl1.Text);
                 ResetNoteManager();
                 ReflashNoteManagerListBox();
+
+                new NoteManagerFile().write(_NoteManager);
             }
 
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
@@ -150,16 +152,14 @@ namespace MdNote
         {
             if (note == null) { return; }
 
-            NoteFile nf = new NoteFile(note);
-            nf.write();
+            new NoteFile().write(note);
         }
 
         private void LoadCurrentNote(Note note)
         {
             if (note == null) { return; }
 
-            NoteFile nf = new NoteFile(note);
-            note.Body = nf.read();
+            new NoteFile().read(note);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -226,6 +226,8 @@ namespace MdNote
                     break;
                 }
             }
+            new NoteManagerFile().write(_NoteManager);
+            new NoteFile().trash(_CurrentNote);
 
             _CurrentNote = null;
             azukiControl1.Text = "";
