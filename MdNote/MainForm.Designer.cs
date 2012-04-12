@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Sgry.Azuki.FontInfo fontInfo1 = new Sgry.Azuki.FontInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.azukiControl1 = new Sgry.Azuki.WinForms.AzukiControl();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -37,12 +36,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.DeleteToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.UpToolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.DownToolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.SettingToolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.SaveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -68,10 +67,6 @@
             this.azukiControl1.Enabled = false;
             this.azukiControl1.FirstVisibleLine = 0;
             this.azukiControl1.Font = new System.Drawing.Font("MS UI Gothic", 9F);
-            fontInfo1.Name = "MS UI Gothic";
-            fontInfo1.Size = 9;
-            fontInfo1.Style = System.Drawing.FontStyle.Regular;
-            this.azukiControl1.FontInfo = fontInfo1;
             this.azukiControl1.ForeColor = System.Drawing.Color.Black;
             this.azukiControl1.Location = new System.Drawing.Point(0, 0);
             this.azukiControl1.Name = "azukiControl1";
@@ -155,10 +150,10 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewToolStripButton,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
+            this.DeleteToolStripButton2,
+            this.UpToolStripButton3,
+            this.DownToolStripButton4,
+            this.SettingToolStripButton5,
             this.SaveToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -176,32 +171,45 @@
             this.NewToolStripButton.Text = "新規作成(&N)";
             this.NewToolStripButton.Click += new System.EventHandler(this.NewToolStripButton_Click);
             // 
-            // toolStripButton2
+            // DeleteToolStripButton2
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::MdNote.Properties.Resources.Minus_Orange_16x16_72;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.DeleteToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DeleteToolStripButton2.Image = global::MdNote.Properties.Resources.Minus_Orange_16x16_72;
+            this.DeleteToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteToolStripButton2.Name = "DeleteToolStripButton2";
+            this.DeleteToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.DeleteToolStripButton2.Text = "toolStripButton2";
+            this.DeleteToolStripButton2.Click += new System.EventHandler(this.DeleteToolStripButton2_Click);
             // 
-            // toolStripButton3
+            // UpToolStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::MdNote.Properties.Resources.UpArrowShort_Blue_16x16_72;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.UpToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.UpToolStripButton3.Image = global::MdNote.Properties.Resources.UpArrowShort_Blue_16x16_72;
+            this.UpToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UpToolStripButton3.Name = "UpToolStripButton3";
+            this.UpToolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.UpToolStripButton3.Text = "toolStripButton3";
+            this.UpToolStripButton3.Click += new System.EventHandler(this.UpToolStripButton3_Click);
             // 
-            // toolStripButton4
+            // DownToolStripButton4
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::MdNote.Properties.Resources.DownArrowShort_Blue_16x16_72;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.DownToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DownToolStripButton4.Image = global::MdNote.Properties.Resources.DownArrowShort_Blue_16x16_72;
+            this.DownToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DownToolStripButton4.Name = "DownToolStripButton4";
+            this.DownToolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.DownToolStripButton4.Text = "toolStripButton4";
+            this.DownToolStripButton4.Click += new System.EventHandler(this.DownToolStripButton4_Click);
+            // 
+            // SettingToolStripButton5
+            // 
+            this.SettingToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SettingToolStripButton5.Image = global::MdNote.Properties.Resources.gear_32;
+            this.SettingToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SettingToolStripButton5.Name = "SettingToolStripButton5";
+            this.SettingToolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.SettingToolStripButton5.Text = "toolStripButton5";
+            this.SettingToolStripButton5.Click += new System.EventHandler(this.SettingToolStripButton5_Click);
             // 
             // SaveToolStripButton
             // 
@@ -222,15 +230,6 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::MdNote.Properties.Resources.gear_32;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "toolStripButton5";
             // 
             // MainForm
             // 
@@ -267,10 +266,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton NewToolStripButton;
         private System.Windows.Forms.ToolStripButton SaveToolStripButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton DeleteToolStripButton2;
+        private System.Windows.Forms.ToolStripButton UpToolStripButton3;
+        private System.Windows.Forms.ToolStripButton DownToolStripButton4;
+        private System.Windows.Forms.ToolStripButton SettingToolStripButton5;
     }
 }
 

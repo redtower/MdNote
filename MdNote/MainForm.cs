@@ -17,6 +17,12 @@ namespace MdNote
         public MainForm()
         {
             InitializeComponent();
+
+            Sgry.Azuki.FontInfo fontInfo = new Sgry.Azuki.FontInfo();
+            fontInfo.Name = "MS UI Gothic";
+            fontInfo.Size = 9;
+            fontInfo.Style = System.Drawing.FontStyle.Regular;
+            this.azukiControl1.FontInfo = fontInfo;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -140,17 +146,6 @@ namespace MdNote
             listBox1.ItemHeight = 38;
         }
 
-        private void NewToolStripButton_Click(object sender, EventArgs e)
-        {
-            string id = DateTime.Now.ToString("yyyyMMdd-HHmmss");
-            _CurrentNote = new Note();
-            _CurrentNote.Id = id;
-            _CurrentNote.Title = "new note";
-            _CurrentNote.FileName = id + ".md";
-
-            azukiControl1.Text = _CurrentNote.Body;
-        }
-
         private void SaveCurrentNote(Note note)
         {
             if (note == null) { return; }
@@ -208,6 +203,50 @@ namespace MdNote
         private void listBox1_Resize(object sender, EventArgs e)
         {
             ReflashNoteManagerListBox();
+        }
+
+        private void NewToolStripButton_Click(object sender, EventArgs e)
+        {
+            string id = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+            _CurrentNote = new Note();
+            _CurrentNote.Id = id;
+            _CurrentNote.Title = "new note";
+            _CurrentNote.FileName = id + ".md";
+
+            azukiControl1.Text = _CurrentNote.Body;
+        }
+
+        private void DeleteToolStripButton2_Click(object sender, EventArgs e)
+        {
+            foreach (Note item in _NoteManager.Items)
+            {
+                if (item.Id.Equals(_CurrentNote.Id))
+                {
+                    _NoteManager.Items.Remove(item);
+                    break;
+                }
+            }
+
+            _CurrentNote = null;
+            azukiControl1.Text = "";
+            webBrowser1.DocumentText = "";
+            azukiControl1.Enabled = false;
+            ReflashNoteManagerListBox();
+        }
+
+        private void UpToolStripButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DownToolStripButton4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SettingToolStripButton5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
