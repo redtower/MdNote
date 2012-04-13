@@ -19,28 +19,35 @@ namespace MdNote
         {
             InitializeComponent();
 
-            Sgry.Azuki.FontInfo fontInfo = new Sgry.Azuki.FontInfo();
-            fontInfo.Name = "MS UI Gothic";
-            fontInfo.Size = 9;
-            fontInfo.Style = System.Drawing.FontStyle.Regular;
-            this.azukiControl1.FontInfo = fontInfo;
+            this.Text = this.Text + "  ver" + GetVersion();
+            _Option.Data = new Settings().AppSettings;
+
+            this.azukiControl1.FontInfo = new Sgry.Azuki.FontInfo(
+                new Font(_Option.Data.FontName, _Option.Data.FontSize));
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = this.Text + "  ver" + GetVersion();
-
-            Settings set = new Settings();
-            _Option.Data = set.AppSettings;
-
-            _NoteManager.Items = new NoteManagerFile().read();
-            ReflashNoteManagerListBox();
-            SetSplitterSize();
-
-            if (set.AppSettings.Maximized)
+            if (_Option.Data.Maximized)
             {
                 this.WindowState = FormWindowState.Maximized;
             }
+            azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
+            this.ClientSize = new Size(_Option.Data.Width, _Option.Data.Height);
+            if (_Option.WordWrap)
+            {
+                azukiControl1.ViewType = Sgry.Azuki.ViewType.WrappedProportional;
+                azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
+            }
+            else
+            {
+                azukiControl1.ViewType = Sgry.Azuki.ViewType.Proportional;
+            }
+
+            _NoteManager.Items = new NoteManagerFile().read();
+            ReflashNoteManagerListBox();
+
+            SetSplitterSize();
         }
 
         private string GetVersion()
@@ -173,6 +180,11 @@ namespace MdNote
         private void MainForm_Resize(object sender, EventArgs e)
         {
             SetSplitterSize();
+
+            if (_Option.WordWrap)
+            {
+                azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
+            }
         }
 
         private void SetSplitterSize()

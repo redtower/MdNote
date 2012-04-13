@@ -8,7 +8,7 @@ namespace MdNote
     public class Option
     {
         Settings.SettingsData _Data;
-        private bool _WordWrap;
+        private bool _WordWrap = true;
 
         public bool WordWrap
         {
