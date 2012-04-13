@@ -124,6 +124,7 @@ namespace MdNote
             _CurrentNote.IsSave = false;
             azukiControl1.Enabled = true;
             azukiControl1.Text = _CurrentNote.Body;
+            azukiControl1.Focus();
         }
 
         private void SaveToolStripButton_Click(object sender, EventArgs e)
@@ -243,6 +244,7 @@ namespace MdNote
             _CurrentNote.FileName = id + ".md";
 
             azukiControl1.Text = _CurrentNote.Body;
+            azukiControl1.Focus();
         }
 
         private void DeleteToolStripButton2_Click(object sender, EventArgs e)
