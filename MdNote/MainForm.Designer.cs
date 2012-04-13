@@ -238,6 +238,7 @@
             this.ClientSize = new System.Drawing.Size(792, 567);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.splitContainer2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "MdNote";
             this.Load += new System.EventHandler(this.MainForm_Load);
