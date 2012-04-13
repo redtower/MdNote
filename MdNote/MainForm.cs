@@ -13,6 +13,7 @@ namespace MdNote
     {
         NoteManager _NoteManager = new NoteManager();
         Note _CurrentNote = null;
+        Option _Option = new Option();
 
         public MainForm()
         {
@@ -29,9 +30,17 @@ namespace MdNote
         {
             this.Text = this.Text + "  ver" + GetVersion();
 
+            Settings set = new Settings();
+            _Option.Data = set.AppSettings;
+
             _NoteManager.Items = new NoteManagerFile().read();
             ReflashNoteManagerListBox();
             SetSplitterSize();
+
+            if (set.AppSettings.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
         }
 
         private string GetVersion()
@@ -297,7 +306,64 @@ namespace MdNote
 
         private void SettingToolStripButton5_Click(object sender, EventArgs e)
         {
+            DialogResult result = _Option.show();
+            if (result == DialogResult.OK)
+            {
+                Settings set = new Settings();
+                set.AppSettings = _Option.Data;
+                set.write();
 
+                azukiControl1.Font = new Font(_Option.Data.FontName, _Option.Data.FontSize);
+                if (_Option.WordWrap)
+                {
+                    azukiControl1.ViewType = Sgry.Azuki.ViewType.WrappedProportional;
+                    azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
+                }
+                else
+                {
+                    azukiControl1.ViewType = Sgry.Azuki.ViewType.Proportional;
+                }
+            }
+        }
+
+        private void azukiControl1_Resize(object sender, EventArgs e)
+        {
+            azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings set = new Settings();
+
+            bool update = false;
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {// 最大化状態
+                if (!set.AppSettings.Maximized)
+                {
+                    set.AppSettings.Maximized = true;
+                    update = true;
+                }
+            }
+            else
+            {// 最大化以外
+                if (set.AppSettings.Maximized)
+                {
+                    set.AppSettings.Maximized = false;
+                    update = true;
+                }
+
+                if (set.AppSettings.Width != this.ClientSize.Width ||
+                    set.AppSettings.Height != this.ClientSize.Height)
+                {// Windows サイズが変化している
+                    set.AppSettings.Width = this.ClientSize.Width;
+                    set.AppSettings.Height = this.ClientSize.Height;
+
+                    update = true;
+                }
+            }
+
+            if (update) { set.write(); }
         }
     }
 }
