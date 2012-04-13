@@ -11,6 +11,7 @@ namespace MdNote
         private string _Title;
         private string _FileName;
         private string _Body = "";
+        private bool _IsSave = false;
 
         public string Id
         {
@@ -35,6 +36,13 @@ namespace MdNote
         {
             get { return _Body; }
             set { _Body = value; }
+        }
+
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        public bool IsSave
+        {
+            get { return _IsSave; }
+            set { _IsSave = value; }
         }
     }
 

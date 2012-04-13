@@ -24,6 +24,7 @@ namespace MdNote
 
             this.azukiControl1.FontInfo = new Sgry.Azuki.FontInfo(
                 new Font(_Option.Data.FontName, _Option.Data.FontSize));
+            this.azukiControl1.TabWidth = 4;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -84,7 +85,14 @@ namespace MdNote
             html += md.Transform(azukiControl1.Text);
             webBrowser1.DocumentText = html;
 
-            SaveCurrentNote(_CurrentNote);
+            if (_CurrentNote.IsSave)
+            {
+                SaveCurrentNote(_CurrentNote);
+            }
+            else
+            {
+                _CurrentNote.IsSave = !_CurrentNote.IsSave;
+            }
         }
 
         private string GetTitle(string text)
@@ -113,6 +121,7 @@ namespace MdNote
 
             LoadCurrentNote(_CurrentNote);
 
+            _CurrentNote.IsSave = false;
             azukiControl1.Enabled = true;
             azukiControl1.Text = _CurrentNote.Body;
         }
