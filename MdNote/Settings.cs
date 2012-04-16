@@ -11,6 +11,7 @@ namespace MdNote
         const int WIDTH = 1024;
         const int HEIGHT = 768;
         const bool MAXIMIZED = false;
+        const string CSSURL = @"http://kevinburke.bitbucket.org/markdowncss/markdown.css";
 
         public class SettingsData
         {
@@ -19,6 +20,7 @@ namespace MdNote
             private int _Width;
             private int _Height;
             private bool _Maximized;
+            private string _CssUrl;
 
             public string FontName
             {
@@ -50,6 +52,12 @@ namespace MdNote
                 set { _Maximized = value; }
             }
 
+            public string CssUrl
+            {
+                get { return _CssUrl; }
+                set { _CssUrl = value; }
+            }
+
             public SettingsData()
             {
                 _FontName = FONT_NAME;
@@ -57,6 +65,7 @@ namespace MdNote
                 _Width = WIDTH;
                 _Height = HEIGHT;
                 _Maximized = MAXIMIZED;
+                _CssUrl = CSSURL;
             }
         }
 

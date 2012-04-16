@@ -82,8 +82,17 @@ namespace MdNote
 
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
             string html = "";
+            html += @"<link href=""" + _Option.Data.CssUrl + @""" rel=""stylesheet""></link>";
             html += md.Transform(azukiControl1.Text);
-            webBrowser1.DocumentText = html;
+
+            string p = AppDomain.CurrentDomain.BaseDirectory + @".notes\temp.html";
+            System.IO.StreamWriter sr = new System.IO.StreamWriter(
+                p,
+                false,
+                System.Text.Encoding.GetEncoding("utf-8"));
+            sr.Write(html);
+            sr.Close();
+            webBrowser1.Navigate(new Uri(p));
 
             if (_CurrentNote.IsSave)
             {
