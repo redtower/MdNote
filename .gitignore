@@ -1,5 +1,6 @@
 MdNote*/bin/
 MdNote*/obj/
 *.suo
+*.sln.cache
 build.log
 readme.html
