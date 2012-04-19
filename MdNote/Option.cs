@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
-namespace MdNote
+namespace MdNote.wpf
 {
     public class Option
     {
@@ -22,9 +21,10 @@ namespace MdNote
             set { _Data = value; }
         }
 
-        public DialogResult show()
+        public bool? show()
         {
-            return new OptionForm(this).ShowDialog();
+            OptionForm f = new OptionForm(this);
+            return f.ShowDialog();
         }
     }
 }

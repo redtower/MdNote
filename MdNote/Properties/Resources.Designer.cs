@@ -59,40 +59,5 @@ namespace MdNote.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static System.Drawing.Bitmap DownArrowShort_Blue_16x16_72 {
-            get {
-                object obj = ResourceManager.GetObject("DownArrowShort_Blue_16x16_72", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap gear_32 {
-            get {
-                object obj = ResourceManager.GetObject("gear_32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Minus_Orange_16x16_72 {
-            get {
-                object obj = ResourceManager.GetObject("Minus_Orange_16x16_72", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Plus_Green_16x16_72 {
-            get {
-                object obj = ResourceManager.GetObject("Plus_Green_16x16_72", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap UpArrowShort_Blue_16x16_72 {
-            get {
-                object obj = ResourceManager.GetObject("UpArrowShort_Blue_16x16_72", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

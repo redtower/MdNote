@@ -20,7 +20,7 @@ IMAGES=${IMAGESDIR}/*
 VER=`grep AssemblyVersion ${TARGET}/Properties/AssemblyInfo.cs | sed 's/.*"\(.*\)".*/\1/'`
 
 all:
-	@MSBuild.exe ${SLN} > ${LOG}; $(CAT)
+	@/c/WINDOWS/Microsoft.NET/Framework/v3.5/MSBuild.exe ${SLN} > ${LOG}; $(CAT)
 
 run:
 	@${BINDIR}/${BIN} &

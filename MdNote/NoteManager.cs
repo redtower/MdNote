@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Collections;
 
-namespace MdNote
+namespace MdNote.wpf
 {
     public class NoteManager
     {
@@ -23,6 +23,11 @@ namespace MdNote
         {
             string p = System.AppDomain.CurrentDomain.BaseDirectory
                 + DIRNAME + FILENAME;
+
+            if (!Directory.Exists(Path.GetDirectoryName(p)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(p));
+            }
 
             return p;
         }
