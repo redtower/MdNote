@@ -31,6 +31,9 @@ namespace MdNote.wpf
 
             this.Width = _Option.Data.Width;
             this.Height = _Option.Data.Height;
+
+            editBox.FontFamily = new FontFamily(_Option.Data.FontName);
+            editBox.FontSize = _Option.Data.FontSize;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
