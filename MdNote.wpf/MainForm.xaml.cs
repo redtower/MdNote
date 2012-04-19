@@ -321,16 +321,17 @@ namespace MdNote.wpf
                 set.AppSettings = _Option.Data;
                 set.write();
 
-                //TextBox.Font = new Font(_Option.Data.FontName, _Option.Data.FontSize);
-                //if (_Option.WordWrap)
-                //{
-                //    azukiControl1.ViewType = Sgry.Azuki.ViewType.WrappedProportional;
-                //    azukiControl1.ViewWidth = azukiControl1.ClientSize.Width;
-                //}
-                //else
-                //{
-                //    azukiControl1.ViewType = Sgry.Azuki.ViewType.Proportional;
-                //}
+                editBox.FontFamily = new FontFamily(_Option.Data.FontName);
+                editBox.FontSize = _Option.Data.FontSize;
+
+                if (_Option.WordWrap)
+                {
+                    editBox.TextWrapping = TextWrapping.Wrap;
+                }
+                else
+                {
+                    editBox.TextWrapping = TextWrapping.NoWrap;
+                }
             }
         }
     }

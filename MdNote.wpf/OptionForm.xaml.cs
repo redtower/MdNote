@@ -21,7 +21,6 @@ namespace MdNote.wpf
     public partial class OptionForm : Window
     {
         private Option _Opt;
-        string _FontName = "";
         List<string> _FontLists = new List<string>();
 
         public OptionForm()
@@ -37,7 +36,29 @@ namespace MdNote.wpf
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            _Opt.Data.FontName = (string)fontListBox.SelectedItem;
+            float f;
+            if (float.TryParse(sizeTextBox.Text, out f))
+            {
+                _Opt.Data.FontSize = f;
+            }
 
+            if (!wordWrapCheckbox.IsChecked.HasValue)
+            {
+                _Opt.WordWrap = false;
+            }
+            else
+            {
+                _Opt.WordWrap = (bool)wordWrapCheckbox.IsChecked;
+            }
+
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -81,67 +102,6 @@ namespace MdNote.wpf
             sizeListBox.SelectedItem = _Opt.Data.FontSize.ToString();
         }
 
-    //    private void cancelButton_Click(object sender, EventArgs e)
-    //    {
-    //        this.Close();
-    //    }
-
-    //    private void okButton_Click(object sender, EventArgs e)
-    //    {
-    //        _Opt.Data.FontName = _FontName;
-    //        _Opt.Data.FontSize = float.Parse(textBox4.Text);
-    //        _Opt.WordWrap = checkBox1.Checked;
-
-    //        this.Close();
-    //    }
-
-    //    private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-    //    {
-    //        textBox4.Text = listBox2.Text;
-    //        SetFontSample();
-    //    }
-
-    //    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-    //    {
-    //        textBox3.Text = listBox1.Text;
-    //        _FontName = listBox1.Items[listBox1.SelectedIndex].ToString();
-    //        SetFontSample();
-    //    }
-
-    //    private void SetFontSample()
-    //    {
-    //        if (textBox4.Text.Length != 0)
-    //        {
-    //            label7.Font = new Font(_FontName, float.Parse(textBox4.Text));
-
-    //            label7.Location = new Point(
-    //                (panel1.Size.Width - label7.PreferredWidth) / 2,
-    //                (panel1.Size.Height - label7.PreferredHeight) / 2);
-    //        }
-    //    }
-
-    //    private void textBox3_TextChanged(object sender, EventArgs e)
-    //    {
-    //        for (int i = 0; i < listBox1.Items.Count; i++ )
-    //        {
-    //            if (listBox1.Items[i].ToString().Equals(textBox3.Text))
-    //            {
-    //                listBox1.Text = listBox1.Items[i].ToString();
-    //                break;
-    //            }
-    //            else if (listBox1.Items[i].ToString().IndexOf(textBox3.Text) == 0)
-    //            {
-    //                listBox1.TopIndex = i;
-    //                break;
-    //            }
-    //        }
-    //    }
-
-    //    private void textBox4_TextChanged(object sender, EventArgs e)
-    //    {
-    //        listBox2.Text = textBox4.Text;
-    //    }
-
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             SetFontList();
@@ -155,6 +115,63 @@ namespace MdNote.wpf
             }
             fontListBox.SelectedItem = _Opt.Data.FontName;
             fontListBox.IsEnabled = true;
+        }
+
+        private void fontListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fontTextBox.Text = fontListBox.Items[fontListBox.SelectedIndex].ToString();
+            SetFontSample();
+        }
+
+        private void sizeListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sizeTextBox.Text = sizeListBox.Items[sizeListBox.SelectedIndex].ToString();
+            SetFontSample();
+        }
+
+        private void SetFontSample()
+        {
+            if (fontTextBox.Text.Length != 0)
+            {
+                sampleLabel.FontFamily = new System.Windows.Media.FontFamily(fontTextBox.Text);
+                sampleLabel.FontSize = double.Parse(sizeTextBox.Text);
+            }
+        }
+
+        private void fontTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            for (int i = 0; i < fontListBox.Items.Count; i++)
+            {
+                if (fontListBox.Items[i].ToString().Equals(fontTextBox.Text))
+                {
+                    fontListBox.SelectedIndex = i;
+                    break;
+                }
+                else if (fontListBox.Items[i].ToString().IndexOf(fontTextBox.Text) == 0)
+                {
+                    fontListBox.ScrollIntoView(fontListBox.Items[i].ToString());
+                    break;
+                }
+            }
+        }
+
+        private void sizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool isReSet = true;
+            for (int i = 0; i < sizeListBox.Items.Count; i++)
+            {
+                if (sizeListBox.Items[i].ToString().Equals(sizeTextBox.Text))
+                {
+                    sizeListBox.SelectedIndex = i;
+                    isReSet = false;
+                    break;
+                }
+            }
+            float f;
+            if (isReSet && float.TryParse(sizeTextBox.Text, out f))
+            {
+                SetFontSample();
+            }
         }
     }
 }
