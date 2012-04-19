@@ -34,6 +34,15 @@ namespace MdNote.wpf
 
             editBox.FontFamily = new FontFamily(_Option.Data.FontName);
             editBox.FontSize = _Option.Data.FontSize;
+
+            if (_Option.WordWrap)
+            {
+                editBox.TextWrapping = TextWrapping.Wrap;
+            }
+            else
+            {
+                editBox.TextWrapping = TextWrapping.NoWrap;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

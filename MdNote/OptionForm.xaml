@@ -4,15 +4,15 @@
     Title="Option" Height="293" Width="625" Loaded="Window_Loaded">
     <Grid Grid.ColumnSpan="2" Grid.RowSpan="3" Name="g">
         <Grid.RowDefinitions>
-            <RowDefinition Height="34*" />
-            <RowDefinition Height="170*" />
-            <RowDefinition Height="51*" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="45" />
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
         <CheckBox Grid.Row="0" Grid.Column="0"
