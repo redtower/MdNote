@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.ComponentModel;
-using System.Drawing;
+using System.Drawing.Text;
 
 namespace MdNote.wpf
 {
@@ -64,8 +56,8 @@ namespace MdNote.wpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BackgroundWorker bg = new BackgroundWorker();
-            bg.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            bg.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            bg.DoWork += new DoWorkEventHandler(this.bg_DoWork);
+            bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.bg_RunWorkerCompleted);
 
             fontListBox.IsEnabled = false;
             bg.RunWorkerAsync();
@@ -75,8 +67,7 @@ namespace MdNote.wpf
         private void SetFontList()
         {
             //InstalledFontCollectionオブジェクトの取得
-            System.Drawing.Text.InstalledFontCollection ifc =
-                new System.Drawing.Text.InstalledFontCollection();
+            InstalledFontCollection ifc = new InstalledFontCollection();
             //インストールされているすべてのフォントファミリアを取得
             System.Drawing.FontFamily[] ffs = ifc.Families;
 
@@ -99,21 +90,20 @@ namespace MdNote.wpf
             }
 
             sizeTextBox.Text = _Opt.Data.FontSize.ToString();
-            sizeListBox.SelectedItem = _Opt.Data.FontSize.ToString();
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void bg_DoWork(object sender, DoWorkEventArgs e)
         {
             SetFontList();
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             foreach (string s in _FontLists)
             {
                 fontListBox.Items.Add(s);
             }
-            fontListBox.SelectedItem = _Opt.Data.FontName;
+            fontTextBox.Text = _Opt.Data.FontName;
             fontListBox.IsEnabled = true;
         }
 
@@ -145,6 +135,7 @@ namespace MdNote.wpf
                 if (fontListBox.Items[i].ToString().Equals(fontTextBox.Text))
                 {
                     fontListBox.SelectedIndex = i;
+                    fontListBox.ScrollIntoView(fontListBox.Items[i].ToString());
                     break;
                 }
                 else if (fontListBox.Items[i].ToString().IndexOf(fontTextBox.Text) == 0)
@@ -163,6 +154,7 @@ namespace MdNote.wpf
                 if (sizeListBox.Items[i].ToString().Equals(sizeTextBox.Text))
                 {
                     sizeListBox.SelectedIndex = i;
+                    sizeListBox.ScrollIntoView(sizeListBox.Items[i].ToString());
                     isReSet = false;
                     break;
                 }
