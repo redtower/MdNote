@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Reflection;
 
-namespace MdNote.wpf
+namespace MdNote
 {
     public partial class MainForm : Window
     {

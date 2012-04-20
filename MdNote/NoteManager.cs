@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Collections;
 
-namespace MdNote.wpf
+namespace MdNote
 {
     public class NoteManager
     {

@@ -1,4 +1,4 @@
-﻿<Window x:Class="MdNote.wpf.MainForm"
+﻿<Window x:Class="MdNote.MainForm"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="MdNote" Height="350" Width="691"

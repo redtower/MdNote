@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MdNote.wpf
+namespace MdNote
 {
     /// <summary>
     /// App.xaml の相互作用ロジック

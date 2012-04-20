@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Drawing.Text;
 
-namespace MdNote.wpf
+namespace MdNote
 {
     /// <summary>
     /// Option.xaml の相互作用ロジック

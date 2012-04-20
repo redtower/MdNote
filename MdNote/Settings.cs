@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using System.IO;
-namespace MdNote.wpf
+namespace MdNote
 {
     public class Settings
     {
