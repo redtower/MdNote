@@ -4,6 +4,7 @@
     Title="MdNote" Height="350" Width="691"
     Loaded="Window_Loaded" Closing="Window_Closing"
     Icon="Resources/Book_Green.png">
+
     <DockPanel LastChildFill="True">
         <ToolBar Height="26" DockPanel.Dock="Top">
             <Button Click="NewButton_Click">

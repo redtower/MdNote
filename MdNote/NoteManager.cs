@@ -21,7 +21,7 @@ namespace MdNote.wpf
 
         private string GetNoteManagerFilePath()
         {
-            string p = System.AppDomain.CurrentDomain.BaseDirectory
+            string p = AppDomain.CurrentDomain.BaseDirectory
                 + DIRNAME + FILENAME;
 
             if (!Directory.Exists(Path.GetDirectoryName(p)))

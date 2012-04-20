@@ -15,72 +15,31 @@ namespace MdNote.wpf
 
         public class SettingsData
         {
-            private string _FontName = "";
-            private float _FontSize;
-            private int _Width;
-            private int _Height;
-            private bool _Maximized;
-            private string _CssUrl;
-
-            public string FontName
-            {
-                get { return _FontName; }
-                set { _FontName = value; }
-            }
-
-            public float FontSize
-            {
-                get { return _FontSize; }
-                set { _FontSize = value; }
-            }
-
-            public int Width
-            {
-                get { return _Width; }
-                set { _Width = value; }
-            }
-
-            public int Height
-            {
-                get { return _Height; }
-                set { _Height = value; }
-            }
-
-            public bool Maximized
-            {
-                get { return _Maximized; }
-                set { _Maximized = value; }
-            }
-
-            public string CssUrl
-            {
-                get { return _CssUrl; }
-                set { _CssUrl = value; }
-            }
+            public string FontName { get; set; }
+            public float FontSize { get; set; }
+            public int Width { get; set; }
+            public int Height { get; set; }
+            public bool Maximized { get; set; }
+            public string CssUrl { get; set; }
 
             public SettingsData()
             {
-                _FontName = FONT_NAME;
-                _FontSize = FONT_SIZE;
-                _Width = WIDTH;
-                _Height = HEIGHT;
-                _Maximized = MAXIMIZED;
-                _CssUrl = CSSURL;
+                FontName = FONT_NAME;
+                FontSize = FONT_SIZE;
+                Width = WIDTH;
+                Height = HEIGHT;
+                Maximized = MAXIMIZED;
+                CssUrl = CSSURL;
             }
         }
 
-        string _FilePath;
-        private SettingsData _AppSettings = new SettingsData();
-
-        public SettingsData AppSettings
-        {
-            get { return _AppSettings; }
-            set { _AppSettings = value; }
-        }
+        private string FilePath { get; set; }
+        public SettingsData AppSettings { get; set; }
 
         public Settings()
         {
-            _FilePath = System.AppDomain.CurrentDomain.BaseDirectory
+            AppSettings = new SettingsData();
+            FilePath = System.AppDomain.CurrentDomain.BaseDirectory
               + SETTINGS_FILENAME;
 
             read();
@@ -90,8 +49,8 @@ namespace MdNote.wpf
         {
             try {
                 XmlSerializer xmls = new XmlSerializer(typeof(SettingsData));
-                FileStream fs = new FileStream(_FilePath, FileMode.Create);
-                xmls.Serialize(fs, _AppSettings);
+                FileStream fs = new FileStream(FilePath, FileMode.Create);
+                xmls.Serialize(fs, AppSettings);
                 fs.Close();
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
@@ -103,9 +62,9 @@ namespace MdNote.wpf
             SettingsData settings = null;
             try {
                 XmlSerializer xmls = new XmlSerializer(typeof(SettingsData));
-                FileStream fs = new FileStream(_FilePath, FileMode.Open);
+                FileStream fs = new FileStream(FilePath, FileMode.Open);
                 settings = (SettingsData)xmls.Deserialize(fs);
-                _AppSettings = settings;
+                AppSettings = settings;
                 fs.Close();
             } catch (Exception) {
                 write();

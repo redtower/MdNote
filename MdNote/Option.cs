@@ -6,19 +6,12 @@ namespace MdNote.wpf
 {
     public class Option
     {
-        Settings.SettingsData _Data;
-        private bool _WordWrap = true;
+        public bool WordWrap { get; set; }
+        public Settings.SettingsData Data { get; set; }
 
-        public bool WordWrap
+        public Option()
         {
-            get { return _WordWrap; }
-            set { _WordWrap = value; }
-        }
-
-        public Settings.SettingsData Data
-        {
-            get { return _Data; }
-            set { _Data = value; }
+            WordWrap = true;
         }
 
         public bool? show()

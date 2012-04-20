@@ -7,42 +7,20 @@ namespace MdNote.wpf
 {
     public class Note
     {
-        private string _Id;
-        private string _Title;
-        private string _FileName;
-        private string _Body = "";
-        private bool _IsSave = false;
-
-        public string Id
-        {
-            get { return _Id; }
-            set { _Id = value; }
-        }
-
-        public string Title
-        {
-            get { return _Title; }
-            set { _Title = value; }
-        }
-
-        public string FileName
-        {
-            get { return _FileName; }
-            set { _FileName = value; }
-        }
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string FileName { get; set; }
 
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        public string Body
-        {
-            get { return _Body; }
-            set { _Body = value; }
-        }
+        public string Body { get; set; }
 
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        public bool IsSave
+        public bool IsSave { get; set; }
+
+        public Note()
         {
-            get { return _IsSave; }
-            set { _IsSave = value; }
+            Body = "";
+            IsSave = false;
         }
     }
 
