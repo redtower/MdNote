@@ -11,7 +11,7 @@ namespace MdNote
         const int WIDTH = 1024;
         const int HEIGHT = 768;
         const bool MAXIMIZED = false;
-        const string CSSURL = @"http://kevinburke.bitbucket.org/markdowncss/markdown.css";
+        const string CSSURL = @"https://raw.github.com/clownfart/Markdown-CSS/master/markdown.css";
 
         public class SettingsData
         {
