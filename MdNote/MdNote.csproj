@@ -113,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Book_Green.ico" />
+    <Content Include="css\mdnote.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\MarkdownSharp.dll" />
     <Resource Include="Resources\Book_Green.png" />
     <Resource Include="Resources\DownArrowShort_Blue_16x16_72.png" />
