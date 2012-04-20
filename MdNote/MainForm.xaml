@@ -33,9 +33,25 @@
             <GridSplitter Width="6" Grid.Column="0" />
             <GridSplitter Width="6" Grid.Column="1" />
 
-            <ListBox    Grid.Column="0" Margin="0,0,6,0" Name="listBox1"
-                        SelectionChanged="listBox1_SelectionChanged" />
-            
+            <ListBox Name="listBox1"
+                     Grid.Column="0"
+                     Margin="0,0,6,0"
+                     AlternationCount="2"
+                     SelectionChanged="listBox1_SelectionChanged" Background="Azure" FontSize="16">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="Azure" />
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="LightCyan" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
             <TextBox    Grid.Column="1" Margin="0,0,6,0" Name="editBox"
                         AcceptsReturn="True" AcceptsTab="True"
                         TextChanged="editBox_TextChanged" Background="LemonChiffon" />
