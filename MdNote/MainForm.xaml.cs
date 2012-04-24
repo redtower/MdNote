@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace MdNote
 {
@@ -52,7 +53,8 @@ namespace MdNote
             }
 
             _NoteManager.Items = new NoteManagerFile().read();
-            ReflashNoteManagerListBox();
+
+            listBox1.DataContext = _NoteManager.Items;
         }
 
         private string GetVersion()
@@ -85,13 +87,11 @@ namespace MdNote
             if (after == null)
             {
                 ResetNoteManager();
-                ReflashNoteManagerListBox();
             }
             else if (!before.Equals(after))
             {// テキスト変更後にタイトルが変わっていた場合
                 _CurrentNote.Title = GetTitle(editBox.Text);
                 ResetNoteManager();
-                ReflashNoteManagerListBox();
 
                 new NoteManagerFile().write(_NoteManager);
             }
@@ -159,23 +159,6 @@ namespace MdNote
             if (isNew)
             {
                 _NoteManager.Items.Add(_CurrentNote);
-            }
-        }
-
-        private void ReflashNoteManagerListBox()
-        {
-            listBox1.Items.Clear();
-            foreach (Note item in _NoteManager.Items)
-            {
-                listBox1.Items.Add(item.Title);
-            }
-            if (_CurrentNote == null) { return; }
-            for (int i = 0; i < _NoteManager.Items.Count; i++)
-            {
-                if (((Note)_NoteManager.Items[i]).Id == _CurrentNote.Id)
-                {
-                    listBox1.SelectedIndex = i;
-                }
             }
         }
 
@@ -261,7 +244,6 @@ namespace MdNote
             editBox.Text = "";
             webBrowser.Source = new Uri("about:blank");
             editBox.IsEnabled = false;
-            ReflashNoteManagerListBox();
         }
 
         private void UpButton_Click(object sender, RoutedEventArgs e)
@@ -287,7 +269,6 @@ namespace MdNote
 
             _NoteManager = nnm;
             new NoteManagerFile().write(_NoteManager);
-            ReflashNoteManagerListBox();
         }
 
         private void DownButton_Click(object sender, RoutedEventArgs e)
@@ -320,7 +301,6 @@ namespace MdNote
 
             _NoteManager = nnm;
             new NoteManagerFile().write(_NoteManager);
-            ReflashNoteManagerListBox();
         }
 
         private void SetupButton_Click(object sender, RoutedEventArgs e)
