@@ -1,14 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using System.ComponentModel;
 
 namespace MdNote
 {
-    public class Note
+    public class Note : INotifyPropertyChanged
     {
+        private string _Title;
         public string Id { get; set; }
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return _Title; }
+            set
+            {
+                _Title = value;
+                OnPropertyChanged("Title");
+            }
+        }
         public string FileName { get; set; }
 
         [System.Xml.Serialization.XmlIgnoreAttribute]
@@ -21,6 +29,13 @@ namespace MdNote
         {
             Body = "";
             IsSave = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 using System.IO;
-using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace MdNote
 {
     public class NoteManager
     {
-        public List<Note> Items = new List<Note>();
+        public ObservableCollection<Note> Items = new ObservableCollection<Note>();
     }
 
     public class NoteManagerFile
@@ -40,7 +38,7 @@ namespace MdNote
             fs.Close();
         }
 
-        public List<Note> read()
+        public ObservableCollection<Note> read()
         {
             NoteManager nm = new NoteManager();
             try
