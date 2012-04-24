@@ -259,6 +259,7 @@ namespace MdNote
             nnm.Items.Add(buffer);
 
             _NoteManager = nnm;
+            listBox1.DataContext = _NoteManager.Items;
             new NoteManagerFile().write(_NoteManager);
         }
 
@@ -291,6 +292,7 @@ namespace MdNote
             }
 
             _NoteManager = nnm;
+            listBox1.DataContext = _NoteManager.Items;
             new NoteManagerFile().write(_NoteManager);
         }
 
